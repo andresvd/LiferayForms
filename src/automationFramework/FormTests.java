@@ -13,11 +13,11 @@ import data.ConfigFileReader;
 public class FormTests extends BaseTest{
 	
 	/*
-	 * For each unfilled term, an error message should appear and the term color must turn to red.
-	 * Check that it is not possible to submit the form without filling all terms
+	 * For each unfilled term, an error message should appear.
+	 * Check that it is not possible to submit the form without filling all terms.
 	 */
 	@Test
-	public void checkMandatoryFields() throws InterruptedException {
+	public void checkMandatoryFields() {
 		// Initialize page object for the form page
 		FormPage formPage = new FormPage(Driver.driver);
 		
@@ -60,7 +60,7 @@ public class FormTests extends BaseTest{
 	 * Fill correctly all the fields and validate that the form was successfully sent.
 	 */
 	@Test
-	public void submitFormSuccess() throws InterruptedException {
+	public void submitFormSuccess() {
 		// Initialize page object of the form page
 		FormPage formPage = new FormPage(Driver.driver);
 		
@@ -87,11 +87,104 @@ public class FormTests extends BaseTest{
 	 * Search for the text 'party rock' on the form
 	 */
 	@Test
-	public void SearchPartyRock(){
+	public void searchPartyRock(){
 		// Initialize page object of the form page
 		FormPage formPage = new FormPage(Driver.driver);
 		
 		// Search for string on form
 		Assert.assertTrue(formPage.stringPresentOnForm("party rock"));
+	}
+	
+	/*
+	 * Try to input a date in the future for birthday
+	 */
+	@Test
+	public void inputFutureBirthday(){
+		// Initialize page object of the form page
+		FormPage formPage = new FormPage(Driver.driver);
+		
+		// Use the answer of USER_BIRTHDAY_FUTURE, that has the birthday set in the future
+		FormAnswer answer = Answers.USER_BIRTHDAY_FUTURE;
+		
+		// Fill the name field
+		formPage.fillName(answer.name);
+		
+		// Fill the birthday field
+		formPage.fillBirthday(answer.birthday);
+		
+		// Fill the 'why testing field' field
+		formPage.fillWhyTestingField(answer.whyTestingField);
+		
+		// Try to submit form
+		formPage.submitForm();
+		
+		// Create a ConfigFileReader to get the property of the invalid field error
+		ConfigFileReader configFile = new ConfigFileReader();
+		String invalidFieldMessage = configFile.getProperty("invalidFieldError");
+		
+		// Validate that the warning telling to put a valid value is displayed
+		Assert.assertEquals(invalidFieldMessage, formPage.getBirthdayWarning());
+	}
+	
+	/*
+	 * Try to input a name containing number characters in it.
+	 */
+	@Test
+	public void inputNameWithNumbers(){
+		// Initialize page object of the form page
+		FormPage formPage = new FormPage(Driver.driver);
+		
+		// Use the answer of USER_NAME_WITH_NUMBERS, that has number characters in the name
+		FormAnswer answer = Answers.USER_NAME_WITH_NUMBERS;
+		
+		// Fill the name field
+		formPage.fillName(answer.name);
+		
+		// Fill the birthday field
+		formPage.fillBirthday(answer.birthday);
+		
+		// Fill the 'why testing field' field
+		formPage.fillWhyTestingField(answer.whyTestingField);
+		
+		// Try to submit form
+		formPage.submitForm();
+		
+		// Create a ConfigFileReader to get the property of the invalid field error
+		ConfigFileReader configFile = new ConfigFileReader();
+		String invalidFieldMessage = configFile.getProperty("invalidFieldError");
+		
+		// Validate that the warning telling to put a valid value is displayed
+		Assert.assertEquals(invalidFieldMessage, formPage.getNameWarning());
+	}
+	
+	/*
+	 * Try to input a name containing special characters in it.
+	 */
+	@Test
+	public void inputNameWithSpecialCharacters(){
+		// Initialize page object of the form page
+		FormPage formPage = new FormPage(Driver.driver);
+		
+		// Use the answer of USER_NAME_WITH_SPECIAL_CHARACTERS, that has special characters in the name
+		FormAnswer answer = Answers.USER_NAME_WITH_SPECIAL_CHARACTERS;
+		
+		// Fill the name field
+		formPage.fillName(answer.name);
+		
+		// Fill the birthday field
+		formPage.fillBirthday(answer.birthday);
+		
+		// Fill the 'why testing field' field
+		formPage.fillWhyTestingField(answer.whyTestingField);
+		
+		// Try to submit form
+		formPage.submitForm();
+		
+		// Create a ConfigFileReader to get the property of the invalid field error
+		ConfigFileReader configFile = new ConfigFileReader();
+		String invalidFieldMessage = configFile.getProperty("invalidFieldError");
+		
+		// Validate that the warning telling to put a valid value is displayed
+		Assert.assertEquals(invalidFieldMessage, formPage.getNameWarning());
 	}
 }

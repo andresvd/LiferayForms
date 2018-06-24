@@ -1,15 +1,11 @@
 package pageObjects;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.junit.Assert;
-import org.junit.Assert.*;
 
 import utils.Waits;
 
@@ -28,61 +24,60 @@ public class FormPage extends BasePage{
 	/*
 	 * Element declarations
 	 */
-	@FindBy (xpath="//div[@id='form-wrapper']/form[1]/div[1]/div[1]/h1[1]")
+	@FindBy (xpath="///h1[@class='ddm-form-name']")
 	private WebElement formName;
 	
-	@FindBy (xpath="//div[@id='form-wrapper']/form[1]/div[1]/div[1]/h5[1]")
+	@FindBy (xpath="//h5[@class='ddm-form-description']")
 	private WebElement formDescription;
 	
-	@FindBy (xpath="//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/h3[1]")
+	@FindBy (xpath="//h3[@class='lfr-ddm-form-page-title']")
 	private WebElement formPageTitle;
 	
-	@FindBy (xpath="//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/h4[1]")
+	@FindBy (xpath="//h4[@class='lfr-ddm-form-page-description']")
 	private WebElement formPageDescription;
 	
-	@FindBy (xpath="//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/label[1]")
+	@FindBy (xpath="//label[@class='required-warning']")
 	private WebElement requiredFieldsWarning;
 	
-	@FindBy (xpath="//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/label[1]")
+	@FindBy (xpath="//div[contains(@class,'form-group')]//label[contains(@for, 'Qual…SeuNome')]")
 	private WebElement nameQuestion;
 	
-	@FindBy (xpath="//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]")
+	@FindBy (xpath="//div[contains(@class, 'input-group')]//input[contains(@id,'Qual…SeuNome')]")
 	private WebElement nameTextBox;
 	
-	@FindBy (xpath="//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/label[1]")
+	@FindBy (xpath="//div[contains(@class,'form-group')]//label[contains(@for,'Qual…ADataDoSeuNascimento')]")
 	private WebElement birthdayQuestion;
 	
-	@FindBy (xpath="//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/input[1]")
+	@FindBy (xpath="//div[contains(@data-fieldname,'Qual…ADataDoSeuNascimento')]//input[contains(@class, 'form-control')]")
 	private WebElement birthdayTextBox;
 
-	@FindBy (xpath="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/label[1]")
+	@FindBy (xpath="//div[contains(@class,'form-group')]//label[contains(@for,'PorqueVocÍIngressouNa¡reaDeTestes')]")
 	private WebElement whyTestingFieldQuestion;
 	
-	@FindBy (xpath="/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/textarea[1]")
+	@FindBy (xpath="//div[contains(@class, 'input-group')]/textarea[contains(@id,'PorqueVocÍIngressouNa¡reaDeTestes')]")
 	private WebElement whyTestingFieldTextBox;
 	
-	//private final String submitButtonXPath = "//button[@class='btn btn-primary lfr-ddm-form-submit pull-right']";
-	private final String submitButtonXPath = "//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[2]/button[3]";
+	private final String submitButtonXPath = "//button[contains(text(),'Submit')]";
 	@FindBy (xpath=submitButtonXPath)
 	private WebElement submitButton;
 	
-	private final String informationSentTitleXPath = "//div[@id='form-wrapper']/div[1]/div[1]/div[1]/h1[1]";
+	private final String informationSentTitleXPath = "//h1[@class='ddm-form-name']";
 	@FindBy (xpath=informationSentTitleXPath)
 	private WebElement informationSentTitle;
 	
-	private final String informationSentDescriptionXPath = "//div[@id='form-wrapper']/div[1]/div[1]/div[1]/h5[1]";
+	private final String informationSentDescriptionXPath = "//h5[@class='ddm-form-description']";
 	@FindBy (xpath=informationSentDescriptionXPath)
 	private WebElement informationSentDescription;
 	
-	private final String fieldWarningNameXPath = "//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]";
+	private final String fieldWarningNameXPath = "//div[contains(@data-fieldname,'Qual…SeuNome')]//div[contains(@class,'form-feedback-item')]";
 	@FindBy (xpath=fieldWarningNameXPath)
 	private WebElement fieldWarningName;
 	
-	private final String fieldWarningBirthdayXPath = "//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]";
+	private final String fieldWarningBirthdayXPath = "//div[contains(@data-fieldname,'Qual…ADataDoSeuNascimento')]//div[contains(@class,'form-feedback-item')]";
 	@FindBy (xpath=fieldWarningBirthdayXPath)
 	private WebElement fieldWarningBirthday;
 	
-	private final String fieldWarningWhyTestingFieldXPath = "//div[@id='form-wrapper']/form[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]";
+	private final String fieldWarningWhyTestingFieldXPath = "//div[contains(@data-fieldname,'PorqueVocÍIngressouNa¡reaDeTestes')]//div[contains(@class,'form-feedback-item')]";
 	@FindBy (xpath=fieldWarningWhyTestingFieldXPath)
 	private WebElement fieldWarningWhyTestingField;
 	
@@ -104,7 +99,7 @@ public class FormPage extends BasePage{
 	}
 	
 	// Click on submit button
-	public void submitForm() throws InterruptedException{
+	public void submitForm() {
 		submitButton.submit();
 	}
 	
@@ -112,15 +107,11 @@ public class FormPage extends BasePage{
 	public void checkIfFormWasSubmitted(){
 		// Get the expected messages for successfully sent form
 		String successfullySentTitle = configFile.getProperty("informationSentTitle");
-		String successfullySentDescription = configFile.getProperty("infromationSentDescription");
+		String successfullySentDescription = configFile.getProperty("informationSentDescription");
 		
-		// Wait for messages to appear
-		Waits.waitUntilElementIsPresent(By.xpath(informationSentTitleXPath)); 
-		Waits.waitUntilElementIsPresent(By.xpath(informationSentDescriptionXPath)); 
-		
-		// Compare the message on the page with the expected message
-		Assert.assertEquals(successfullySentTitle, informationSentTitle.getText());
-		Assert.assertEquals(successfullySentDescription, informationSentDescription.getText());
+		// Wait for expected messages to appear on the title and description of the form
+		Waits.waitUntilTextIsPresentInElement(By.xpath(informationSentTitleXPath), successfullySentTitle); 
+		Waits.waitUntilTextIsPresentInElement(By.xpath(informationSentDescriptionXPath), successfullySentDescription); 
 	}
 	
 	/*
@@ -145,7 +136,7 @@ public class FormPage extends BasePage{
 		return fieldWarningWhyTestingField.getText();
 	}
 	
-	// Generic method to find if element is exists on the page
+	// Generic method to find if element exists on the page
 	private boolean elementExists(WebElement element){
 		try{
 			// Tries to see that the element is displayed

@@ -1,7 +1,6 @@
 package utils;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,5 +28,16 @@ public class Waits {
 	public static void waitUntilElementIsNotPresent (By by, int seconds){
 		WebDriverWait wait = new WebDriverWait (Driver.driver, seconds);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+	}
+	
+	// Wait until element has a specific text using the default time configured on "waitTime" property
+	public static void waitUntilTextIsPresentInElement (By by, String text){
+		waitUntilTextIsPresentInElement(by, text, Integer.parseInt(new ConfigFileReader().getProperty("waitTime")));
+	}
+	
+	// Wait until element has a specific text
+	public static void waitUntilTextIsPresentInElement (By by, String text, int seconds){
+		WebDriverWait wait = new WebDriverWait (Driver.driver, seconds);
+		wait.until(ExpectedConditions.textToBePresentInElementLocated(by, text));
 	}
 }

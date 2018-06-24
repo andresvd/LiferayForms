@@ -11,7 +11,14 @@ To get started, just download the project and import it to eclipse. Then, right 
 * JUnit 4
 
 ## Drivers
-For now, this project implements the [Chromedriver](http://chromedriver.storage.googleapis.com/index.html) 2.40 (the latest one to this date). Chrome was chosen because it is the most popular browser in the world. It is managed on the class `utils/Driver.java`.
+For now, this project uses the Windows version of the [Chromedriver](http://chromedriver.storage.googleapis.com/index.html) 2.40 (the latest one to this date). If you use a Linux or Mac computer, please perform these steps:
+* Download the specific [Chromedriver version](http://chromedriver.storage.googleapis.com/index.html) for your OS.
+* Copy the chromedriver file to the root of the project.
+* Edit the `src/utils/Driver.java` and replace the line
+`System.setProperty("webdriver.chrome.driver", "chromedriver.exe");`
+for the line
+`System.setProperty("webdriver.chrome.driver", "chromedriver");`
+Chrome was chosen because it is the most popular browser in the world. It is managed on the class `src/utils/Driver.java`.
 
 ## Packages
 The project is structured in different packages in order to be easily maintained.
