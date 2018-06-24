@@ -1,4 +1,4 @@
-# life-forms
+# LiferayForms
 
 This project automates the test cases for the form pages. It is written in Java and uses Selenium and JUnit.
 
