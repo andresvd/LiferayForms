@@ -15,9 +15,13 @@ For now, this project uses the Windows version of the [Chromedriver](http://chro
 * Download the specific [Chromedriver version](http://chromedriver.storage.googleapis.com/index.html) for your OS.
 * Copy the chromedriver file to the root of the project.
 * Edit the `src/utils/Driver.java` and replace the line
+
 `System.setProperty("webdriver.chrome.driver", "chromedriver.exe");`
+
 for the line
+
 `System.setProperty("webdriver.chrome.driver", "chromedriver");`
+
 Chrome was chosen because it is the most popular browser in the world. It is managed on the class `src/utils/Driver.java`.
 
 ## Packages
